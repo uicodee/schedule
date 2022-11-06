@@ -20,7 +20,7 @@ async def main():
     scheduler = AsyncIOScheduler(timezone=pytz.timezone('Asia/Tashkent'))
     config = load_config('bot.ini')
     storage = MemoryStorage()
-    bot = Bot(token=config.tg_bot.token)
+    bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
     dp = Dispatcher(bot, storage=storage)
     scheduler.add_job(send_schedule, "cron", day_of_week='mon-fri', hour=5, minute=45, args=(bot, config))
     try:
